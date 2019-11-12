@@ -1,41 +1,43 @@
 package airTicketReservation;
+import java.time.LocalDateTime;
 
 public class TestATR {
-	public static void main(String[] args) throws NoTicketException {
+	public static void main(String[] args) {
 
 		ReservationSystem rs = new ReservationSystem();
+		
+		Airport war = new Airport ("WAR", "Warsaw", "Lotniskowa 1, Warsaw");
+		Airport ber = new Airport ("BER", "Berlin", "Flughafen 2, Berlin");
+		Airport mos = new Airport ("MOS", "Moscow", "Aeroportna 3, Moscow");
+		Airport sar = new Airport ("SAR", "Sarnaki", "Podlaska 4, Sarnaki");
+		
+		ReservationSystem.airports.add(war);
+		ReservationSystem.airports.add(ber);
+		ReservationSystem.airports.add(mos);
+		ReservationSystem.airports.add(sar);
+		
+		Airplane B747 = new Airplane ("Boeing747", 220);
+		Airplane B787 = new Airplane ("Boeing787", 330);
 
+		ReservationSystem.airplanes.add(B747);
+		ReservationSystem.airplanes.add(B787);
+		
 		User user1 = new User("Adam", "Kowalski");
 		User user2 = new User("Jan", "Nowak");
 
-		User.users.add(user1);
-		User.users.add(user2);
+		ReservationSystem.users.add(user1);
+		ReservationSystem.users.add(user2);
 
-		Flight toPoznan = new Flight(40, "Warszawa-Poznan", "22.10.2019", 150.0);
-		Flight toBerlin = new Flight(100, "Warszawa-Berlin", "22.10.2019", 350.0);
-		Flight toPodlasie = new Flight(1, "Warszawa-Podlasie", "23.10.2019", 1000.0);
+		Route warBer = new Route (war, ber, LocalDateTime.of(2019, 11, 8, 15, 00), LocalDateTime.of(2019, 11, 8, 17, 30), B747, 150.00);
+		Route warMos = new Route (war, ber, LocalDateTime.of(2019, 11, 8, 15, 00), LocalDateTime.of(2019, 11, 8, 17, 30), B747, 150.00);
+		Route warSar = new Route (war, ber, LocalDateTime.of(2019, 11, 8, 15, 00), LocalDateTime.of(2019, 11, 8, 17, 30), B747, 150.00);
+		Route berMos = new Route (war, ber, LocalDateTime.of(2019, 11, 8, 15, 00), LocalDateTime.of(2019, 11, 8, 17, 30), B747, 150.00);
 
-		toPoznan.printFlightInformation();
-		toBerlin.printFlightInformation();
-		toPodlasie.printFlightInformation();
-		System.out.println();
-
-		rs.bookFlight(toPoznan, user1);
-
-		toPoznan.reserve(user2);
-		toBerlin.reserve(user1);
-		System.out.println();
-
-		toPodlasie.reserve(user1);
-		toPodlasie.reserve(user1);
-		System.out.println();
-
+		System.out.println(sar.getInformation());
 		user1.printUser();
-		user2.printUser();
-		System.out.println();
-		toPoznan.printFlightInformation();
-		toBerlin.printFlightInformation();
-		toPodlasie.printFlightInformation();
 
+		warBer.printRouteInformation();
+		warBer.reserve(user1);
+		warBer.printRouteInformation();
 	}
 }

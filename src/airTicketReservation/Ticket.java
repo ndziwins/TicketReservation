@@ -3,13 +3,13 @@ package airTicketReservation;
 public class Ticket {
 	private int TicketID;
 	private User user;
-	private Flight flight;
-	private static int MAXID = 0;
+	private Route route;
+	private static int maxId = 0;
 
-	public Ticket(User user, Flight flight) {
-		this.TicketID = MAXID++;
+	public Ticket(User user, Route route) {
+		this.TicketID = maxId++;
 		this.user = user;
-		this.flight = flight;
+		this.route = route;
 	}
 
 	public int getTicketID() {
@@ -20,7 +20,7 @@ public class Ticket {
 		return user;
 	}
 
-	public Flight getFlight() {
-		return flight;
+	public Route getRoute() {
+		return route;
 	}
 }

@@ -7,15 +7,13 @@ public class User {
 	private String name;
 	private String surname;
 	private int userID;
-	private static int MAXID = 1;
+	private static int maxId = 1;
 	private ArrayList<Ticket> tickets = new ArrayList<Ticket>();
-	public static ArrayList<User> users = new ArrayList<User>();
-
 	
 	public User(String name, String surname) {
 		this.name= name;
 		this.surname = surname;
-		this.userID = MAXID++;
+		this.userID = maxId++;
 	}
 
 	public void addTicket(Ticket ticket) {
@@ -35,7 +33,7 @@ public class User {
 	}
 
 	public void printUser() {
-		System.out.println("U¿ytkownik " + this.getName() + " ma w systemie id: " + this.getID());
+		System.out.println("Passenger " + this.getName() + " has id: " + this.getID());
 	}
 
 }
